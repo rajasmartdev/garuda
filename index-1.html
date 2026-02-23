@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Garuda Food Courts — NH 16's Favourite Pit Stop</title>
+  <meta name="description" content="Fresh food, clean washrooms, cool AC at Gundugolanu NH 16. Open 6:30 AM–11:45 PM daily."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Lora:ital,wght@0,400;0,600;1,400;1,600&family=Space+Mono:ital@0;1&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"/>
+
+  <style>
+    :root {
+      --tomato:    #E63B2E;
+      --tomato-dk: #B82E23;
+      --mustard:   #F5A623;
+      --forest:    #1B4332;
+      --cream:     #FFF8EF;
+      --ink:       #1A1108;
+      --paper:     #FFFDF9;
+      --sand:      #F2E8D9;
+      --muted:     #7A6248;
+    }
+    *{margin:0;padding:0;box-sizing:border-box;}
+    html{scroll-behavior:smooth;}
+    body{font-family:'Syne',sans-serif;background:var(--paper);color:var(--ink);overflow-x:hidden;}
+
+    /* ─── TICKER ─── */
+    .ticker{background:var(--tomato);padding:.42rem 0;overflow:hidden;white-space:nowrap;}
+    .ticker-inner{display:inline-flex;animation:ticker 28s linear infinite;}
+    .ticker-item{font-family:'Space Mono',monospace;font-size:.7rem;color:#fff;letter-spacing:.5px;padding:0 2.5rem;display:inline-flex;align-items:center;gap:.8rem;}
+    .ticker-dot{width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.5);}
+    @keyframes ticker{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+
+    /* ─── NAV ─── */
+    .navbar{background:var(--paper);border-bottom:2px solid var(--ink);padding:.9rem 0;position:sticky;top:0;z-index:100;}
+    .nav-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.3rem;color:var(--ink)!important;letter-spacing:-.5px;text-decoration:none;display:flex;align-items:center;gap:10px;}
+    .logo-badge{background:var(--tomato);color:#fff;font-size:.58rem;font-family:'Space Mono',monospace;padding:.18rem .55rem;border-radius:2px;letter-spacing:1px;}
+    .nav-link{font-size:.8rem;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--ink)!important;padding:.3rem .9rem!important;transition:color .2s;}
+    .nav-link:hover{color:var(--tomato)!important;}
+    .nav-phone{background:var(--ink);color:#fff!important;padding:.45rem 1.2rem!important;border-radius:2px;font-size:.75rem!important;font-family:'Space Mono',monospace!important;display:inline-flex;align-items:center;gap:6px;transition:background .2s!important;}
+    .nav-phone:hover{background:var(--tomato)!important;color:#fff!important;}
+
+    /* ─── HERO ─── */
+    .hero{background:var(--cream);overflow:hidden;border-bottom:2px solid var(--ink);}
+    .hero-inner{display:grid;grid-template-columns:1fr 1fr;min-height:92vh;}
+    @media(max-width:991px){.hero-inner{grid-template-columns:1fr;min-height:auto;}}
+    .hero-left{
+      padding:4rem 3rem 3rem;
+      display:flex;flex-direction:column;justify-content:space-between;
+      border-right:2px solid var(--ink);
+    }
+    @media(max-width:991px){.hero-left{padding:3rem 1.5rem;border-right:none;border-bottom:2px solid var(--ink);}}
+    .hero-kicker{font-family:'Space Mono',monospace;font-size:.68rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:2rem;display:flex;align-items:center;gap:.8rem;}
+    .hero-kicker::before{content:'';display:block;width:36px;height:1px;background:var(--muted);}
+    .hero-h1{font-family:'Lora',serif;font-size:clamp(3.5rem,8vw,8rem);font-weight:600;line-height:.93;letter-spacing:-3px;color:var(--ink);margin-bottom:2.5rem;}
+    .hero-h1 .outline{-webkit-text-stroke:2.5px var(--ink);color:transparent;}
+    .hero-h1 .red{color:var(--tomato);}
+    .hero-desc{font-family:'Lora',serif;font-size:1.05rem;font-style:italic;color:var(--muted);line-height:1.72;max-width:400px;margin-bottom:2.5rem;}
+    .hero-desc strong{color:var(--ink);font-style:normal;}
+    .hero-btns{display:flex;gap:.8rem;flex-wrap:wrap;}
+    .btn-ink{background:var(--ink);color:#fff;border:2px solid var(--ink);padding:.8rem 1.8rem;font-family:'Syne',sans-serif;font-weight:700;font-size:.85rem;border-radius:2px;text-decoration:none;display:inline-flex;align-items:center;gap:7px;transition:all .2s;}
+    .btn-ink:hover{background:var(--tomato);border-color:var(--tomato);color:#fff;transform:translateY(-2px);}
+    .btn-outline-ink{background:transparent;color:var(--ink);border:2px solid var(--ink);padding:.8rem 1.8rem;font-family:'Syne',sans-serif;font-weight:700;font-size:.85rem;border-radius:2px;text-decoration:none;display:inline-flex;align-items:center;gap:7px;transition:all .2s;}
+    .btn-outline-ink:hover{background:var(--ink);color:#fff;transform:translateY(-2px);}
+    /* Right side of hero */
+    .hero-right{position:relative;overflow:hidden;background:var(--ink);}
+    .hero-img{width:100%;height:100%;object-fit:cover;opacity:.75;display:block;min-height:450px;}
+    .hero-right-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(26,17,8,.5)0%,transparent 60%);}
+    /* Spinning badge */
+    .spin-badge{
+      position:absolute;bottom:2rem;left:2rem;
+      width:120px;height:120px;
+      background:var(--mustard);
+      border:2px solid var(--ink);
+      border-radius:50%;
+      display:flex;align-items:center;justify-content:center;
+      animation:spin 18s linear infinite;
+      box-shadow:4px 4px 0 var(--ink);
+      text-align:center;
+    }
+    .spin-badge span{font-family:'Space Mono',monospace;font-size:.58rem;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--ink);line-height:1.5;}
+    @keyframes spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+    /* Stats bar */
+    .stats-bar{background:var(--ink);border-bottom:2px solid var(--tomato);}
+    .stat-item{flex:1;text-align:center;padding:1.1rem .5rem;border-right:1px solid rgba(255,255,255,.1);}
+    .stat-item:last-child{border-right:none;}
+    .stat-n{font-family:'Syne',sans-serif;font-weight:800;font-size:1.5rem;color:var(--mustard);display:block;line-height:1;}
+    .stat-l{font-family:'Space Mono',monospace;font-size:.62rem;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:.5px;margin-top:3px;display:block;}
+
+    /* ─── MARQUEE ─── */
+    .marquee-bar{background:var(--mustard);border-top:2px solid var(--ink);border-bottom:2px solid var(--ink);padding:.55rem 0;overflow:hidden;}
+    .marquee-inner{display:inline-flex;animation:ticker 20s linear infinite;white-space:nowrap;}
+    .marquee-item{font-family:'Syne',sans-serif;font-weight:800;font-size:1rem;letter-spacing:1px;text-transform:uppercase;color:var(--ink);padding:0 2rem;display:flex;align-items:center;gap:1.5rem;}
+    .marquee-item::after{content:'★';font-size:.7rem;}
+
+    /* ─── WHY SECTION ─── */
+    .why-section{padding:5.5rem 0;background:var(--paper);}
+    .sec-tag{font-family:'Space Mono',monospace;font-size:.65rem;letter-spacing:3px;text-transform:uppercase;color:var(--tomato);margin-bottom:.7rem;display:block;}
+    .sec-h{font-family:'Lora',serif;font-size:clamp(1.9rem,4vw,3.2rem);font-weight:600;line-height:1.12;color:var(--ink);margin-bottom:1rem;letter-spacing:-.5px;}
+    .sec-h em{color:var(--tomato);font-style:italic;}
+    .feat-card{border:2px solid var(--ink);padding:2rem;height:100%;background:var(--paper);position:relative;transition:transform .25s,box-shadow .25s;}
+    .feat-card:hover{transform:translate(-4px,-4px);box-shadow:8px 8px 0 var(--ink);}
+    .feat-num{font-family:'Lora',serif;font-size:4.5rem;font-weight:600;color:rgba(26,17,8,.06);line-height:1;position:absolute;top:.5rem;right:1.2rem;user-select:none;}
+    .feat-emoji{font-size:2rem;display:block;margin-bottom:.9rem;}
+    .feat-card h4{font-family:'Syne',sans-serif;font-weight:800;font-size:1.05rem;color:var(--ink);margin-bottom:.6rem;}
+    .feat-card p{font-size:.85rem;color:var(--muted);line-height:1.65;font-family:'Lora',serif;}
+    .feat-card.red{background:var(--tomato);border-color:var(--tomato-dk);}
+    .feat-card.red h4,.feat-card.red p,.feat-card.red .feat-num{color:rgba(255,255,255,.9)!important;}
+    .feat-card.red:hover{box-shadow:8px 8px 0 var(--tomato-dk);}
+
+    /* ─── VISUAL PANELS ─── */
+    .panels-section{border-top:2px solid var(--ink);}
+    .v-panel{height:430px;position:relative;overflow:hidden;border-right:2px solid var(--ink);}
+    .v-panel:last-child{border-right:none;}
+    .v-panel .bg{position:absolute;inset:0;background-size:cover;background-position:center;transition:transform .5s;}
+    .v-panel:hover .bg{transform:scale(1.07);}
+    .v-grad{position:absolute;inset:0;background:linear-gradient(to top,rgba(26,17,8,.88)0%,rgba(26,17,8,.08)60%);}
+    .v-body{position:absolute;bottom:0;left:0;right:0;padding:2rem;z-index:2;}
+    .v-tag{display:inline-block;background:var(--mustard);color:var(--ink);font-size:.6rem;font-family:'Space Mono',monospace;letter-spacing:1.5px;text-transform:uppercase;padding:.2rem .55rem;border-radius:2px;margin-bottom:.6rem;}
+    .v-num{font-family:'Space Mono',monospace;font-size:.6rem;color:rgba(255,255,255,.4);letter-spacing:2px;display:block;margin-bottom:.3rem;}
+    .v-body h3{font-family:'Lora',serif;font-size:1.3rem;color:#fff;font-style:italic;line-height:1.35;}
+    .bg1{background:linear-gradient(to top,rgba(26,17,8,.88),transparent 55%),url('https://images.unsplash.com/photo-1567521464027-f127ff144326?w=900&q=80')center/cover;}
+    .bg2{background:linear-gradient(to top,rgba(26,17,8,.88),transparent 55%),url('https://images.unsplash.com/photo-1631452180775-dc13b6bb073c?w=900&q=80')center/cover;}
+    .bg3{background:linear-gradient(to top,rgba(26,17,8,.88),transparent 55%),url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=900&q=80')center/cover;}
+
+    /* ─── MENU ─── */
+    .menu-section{padding:5.5rem 0;background:var(--forest);border-top:2px solid var(--ink);}
+    .menu-section .sec-h{color:#fff;}
+    .menu-section .sec-tag{color:var(--mustard);}
+    .menu-grid{display:grid;grid-template-columns:repeat(3,1fr);border:2px solid rgba(255,255,255,.1);}
+    @media(max-width:991px){.menu-grid{grid-template-columns:repeat(2,1fr);}}
+    @media(max-width:575px){.menu-grid{grid-template-columns:1fr;}}
+    .m-card{border-right:2px solid rgba(255,255,255,.1);border-bottom:2px solid rgba(255,255,255,.1);padding:1.8rem;transition:background .25s;position:relative;overflow:hidden;}
+    .m-card:nth-child(3n){border-right:none;}
+    .m-card:nth-last-child(-n+3){border-bottom:none;}
+    @media(max-width:991px){.m-card:nth-child(3n){border-right:2px solid rgba(255,255,255,.1);}.m-card:nth-child(2n){border-right:none!important;}}
+    @media(max-width:575px){.m-card{border-right:none!important;}}
+    .m-card:hover{background:rgba(255,255,255,.05);}
+    .m-card::after{content:'';position:absolute;bottom:0;left:0;width:100%;height:2px;background:var(--mustard);transform:scaleX(0);transform-origin:left;transition:transform .3s;}
+    .m-card:hover::after{transform:scaleX(1);}
+    .m-emo{font-size:2.2rem;display:block;margin-bottom:.8rem;}
+    .m-card h5{font-family:'Syne',sans-serif;font-weight:800;color:#fff;font-size:.95rem;margin-bottom:.45rem;}
+    .m-card p{font-size:.82rem;color:rgba(255,255,255,.4);line-height:1.58;font-family:'Lora',serif;}
+
+    /* ─── REVIEWS ─── */
+    .reviews-section{padding:5.5rem 0;background:var(--cream);border-top:2px solid var(--ink);}
+    .r-card{border:2px solid var(--ink);padding:2rem;height:100%;background:var(--paper);position:relative;transition:transform .25s,box-shadow .25s;}
+    .r-card:hover{transform:translate(-3px,-3px);box-shadow:6px 6px 0 var(--ink);}
+    .r-stars i{color:var(--mustard);font-size:.82rem;}
+    .r-text{font-family:'Lora',serif;font-size:.93rem;font-style:italic;color:var(--ink);line-height:1.72;margin:1rem 0;}
+    .r-author{font-family:'Space Mono',monospace;font-size:.68rem;color:var(--muted);letter-spacing:.5px;}
+    .r-author::before{content:'— ';}
+    .r-big{font-family:'Lora',serif;font-size:6rem;color:rgba(26,17,8,.05);line-height:.8;position:absolute;top:.5rem;right:1rem;user-select:none;}
+    .g-cta{display:inline-flex;align-items:center;gap:9px;border:2px solid var(--ink);padding:.7rem 1.6rem;font-family:'Syne',sans-serif;font-weight:700;font-size:.82rem;color:var(--ink);text-decoration:none;transition:all .2s;border-radius:2px;}
+    .g-cta:hover{background:var(--ink);color:#fff;}
+
+    /* ─── LOCATION ─── */
+    .location-section{padding:5.5rem 0;background:var(--paper);border-top:2px solid var(--ink);}
+    .loc-row{display:flex;gap:1rem;align-items:flex-start;padding:1.1rem 0;border-bottom:1px solid rgba(26,17,8,.1);}
+    .loc-row:last-of-type{border-bottom:none;}
+    .loc-ico{width:36px;height:36px;border:2px solid var(--ink);border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:.9rem;color:var(--tomato);flex-shrink:0;}
+    .loc-lbl{font-family:'Space Mono',monospace;font-size:.62rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:2px;}
+    .loc-val{font-size:.9rem;color:var(--ink);font-weight:600;line-height:1.4;}
+    .dist-row{display:flex;flex-wrap:wrap;gap:.55rem;margin-top:1.4rem;}
+    .dpill{border:1.5px solid var(--ink);padding:.32rem .85rem;font-family:'Space Mono',monospace;font-size:.65rem;color:var(--ink);border-radius:50px;}
+    .map-wrap{border:2px solid var(--ink);overflow:hidden;box-shadow:7px 7px 0 var(--ink);}
+
+    /* ─── FINAL CTA ─── */
+    .final-cta{background:var(--tomato);border-top:2px solid var(--ink);padding:6rem 0;text-align:center;position:relative;overflow:hidden;}
+    .final-cta::before{content:'EAT';font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(8rem,22vw,22rem);color:rgba(255,255,255,.07);position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none;white-space:nowrap;letter-spacing:-4px;}
+    .final-cta .big{font-family:'Lora',serif;font-size:clamp(2.4rem,5.5vw,5rem);font-weight:600;color:#fff;line-height:1.05;margin-bottom:.7rem;letter-spacing:-1px;}
+    .final-cta .big em{font-style:italic;text-decoration:underline;text-decoration-color:rgba(255,255,255,.35);}
+    .final-cta .sub{font-family:'Lora',serif;font-size:1.05rem;color:rgba(255,255,255,.7);font-style:italic;margin-bottom:2.8rem;}
+    .btn-white{background:#fff;color:var(--tomato);border:2px solid #fff;padding:.85rem 2rem;font-family:'Syne',sans-serif;font-weight:800;font-size:.88rem;border-radius:2px;text-decoration:none;display:inline-flex;align-items:center;gap:7px;transition:all .2s;}
+    .btn-white:hover{background:transparent;color:#fff;}
+    .btn-ghost-w{background:transparent;color:#fff;border:2px solid rgba(255,255,255,.45);padding:.85rem 2rem;font-family:'Syne',sans-serif;font-weight:700;font-size:.88rem;border-radius:2px;text-decoration:none;display:inline-flex;align-items:center;gap:7px;transition:all .2s;}
+    .btn-ghost-w:hover{border-color:#fff;background:rgba(255,255,255,.1);color:#fff;}
+
+    /* ─── FOOTER ─── */
+    footer{background:var(--ink);border-top:2px solid rgba(255,255,255,.08);padding:4rem 0 1.5rem;}
+    .f-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.45rem;color:#fff;letter-spacing:-.5px;}
+    .f-logo span{color:var(--mustard);}
+    .f-tag{font-family:'Lora',serif;font-style:italic;font-size:.83rem;color:rgba(255,255,255,.3);margin-top:.3rem;}
+    .f-head{font-family:'Space Mono',monospace;font-size:.62rem;letter-spacing:2px;text-transform:uppercase;color:var(--mustard);margin-bottom:.9rem;display:block;}
+    .f-list{list-style:none;padding:0;}
+    .f-list li{margin-bottom:7px;}
+    .f-list a{font-size:.83rem;color:rgba(255,255,255,.38);text-decoration:none;transition:color .2s;font-family:'Lora',serif;}
+    .f-list a:hover{color:var(--mustard);}
+    .f-bottom{border-top:1px solid rgba(255,255,255,.06);margin-top:3rem;padding-top:1.2rem;font-size:.68rem;font-family:'Space Mono',monospace;color:rgba(255,255,255,.18);text-align:center;}
+    .soc{width:33px;height:33px;border:1px solid rgba(255,255,255,.15);border-radius:2px;display:inline-flex;align-items:center;justify-content:center;color:rgba(255,255,255,.38);text-decoration:none;font-size:.88rem;transition:all .2s;}
+    .soc:hover{border-color:var(--mustard);color:var(--mustard);}
+
+    /* ─── SCROLL REVEAL ─── */
+    .sr{opacity:0;transform:translateY(28px);transition:opacity .65s,transform .65s;}
+    .sr.on{opacity:1;transform:none;}
+    .d1{transition-delay:.1s;}.d2{transition-delay:.2s;}.d3{transition-delay:.3s;}
+
+    /* ─── RESPONSIVE ─── */
+    @media(max-width:767px){
+      .stat-n{font-size:1.2rem;}
+      .v-panel{height:270px;}
+      .hero-h1{letter-spacing:-1px;}
+    }
+  </style>
+</head>
+<body>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-inner">
+    <div class="ticker-item">NH 16 · GUNDUGOLANU <span class="ticker-dot"></span></div>
+    <div class="ticker-item">OPEN 6:30 AM – 11:45 PM <span class="ticker-dot"></span></div>
+    <div class="ticker-item">FSSAI CERTIFIED KITCHEN <span class="ticker-dot"></span></div>
+    <div class="ticker-item">8+ FOOD COUNTERS <span class="ticker-dot"></span></div>
+    <div class="ticker-item">12,000+ FAMILIES MONTHLY <span class="ticker-dot"></span></div>
+    <div class="ticker-item">4.3★ GOOGLE RATING <span class="ticker-dot"></span></div>
+    <div class="ticker-item">CALL +91 90302 22222 <span class="ticker-dot"></span></div>
+    <div class="ticker-item">NH 16 · GUNDUGOLANU <span class="ticker-dot"></span></div>
+    <div class="ticker-item">OPEN 6:30 AM – 11:45 PM <span class="ticker-dot"></span></div>
+    <div class="ticker-item">FSSAI CERTIFIED KITCHEN <span class="ticker-dot"></span></div>
+    <div class="ticker-item">8+ FOOD COUNTERS <span class="ticker-dot"></span></div>
+    <div class="ticker-item">12,000+ FAMILIES MONTHLY <span class="ticker-dot"></span></div>
+    <div class="ticker-item">4.3★ GOOGLE RATING <span class="ticker-dot"></span></div>
+    <div class="ticker-item">CALL +91 90302 22222 <span class="ticker-dot"></span></div>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+    <a class="nav-logo" href="#">
+      GARUDA FOOD COURTS
+      <span class="logo-badge">NH 16</span>
+    </a>
+    <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#nm">
+      <i class="bi bi-list fs-3"></i>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="nm">
+      <ul class="navbar-nav align-items-center gap-1 mt-3 mt-lg-0">
+        <li><a class="nav-link" href="#">Home</a></li>
+        <li><a class="nav-link" href="#menu">Menu</a></li>
+        <li><a class="nav-link" href="#reviews">Reviews</a></li>
+        <li><a class="nav-link" href="#location">Location</a></li>
+        <li class="ms-2"><a class="nav-link nav-phone" href="tel:+919030222222"><i class="bi bi-telephone-fill"></i> +91 90302 22222</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <!-- LEFT -->
+    <div class="hero-left">
+      <div>
+        <div class="hero-kicker">NH 16 · Gundugolanu, Near Eluru</div>
+        <h1 class="hero-h1">
+          <span class="red">Best</span><br/>
+          Stop<br/>
+          on&nbsp;<span class="outline">NH&nbsp;16.</span>
+        </h1>
+        <p class="hero-desc">
+          Fresh food. Clean washrooms. Cool AC.<br/>
+          <strong>All under one roof — every single day.</strong><br/>
+          The highway stop your family deserves.
+        </p>
+      </div>
+      <div>
+        <div class="hero-btns mb-4">
+          <a href="https://maps.google.com/?q=Garuda+Food+Courts+NH16+Gundugolanu" target="_blank" class="btn-ink">
+            <i class="bi bi-geo-alt-fill"></i> Get Directions
+          </a>
+          <a href="#menu" class="btn-outline-ink">
+            <i class="bi bi-grid-3x3-gap-fill"></i> View Menu
+          </a>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:.7rem;">
+          <span style="font-family:'Space Mono',monospace;font-size:.65rem;color:var(--muted);letter-spacing:.5px;display:flex;align-items:center;gap:5px;"><i class="bi bi-clock" style="color:var(--tomato);"></i> 6:30 AM – 11:45 PM</span>
+          <span style="font-family:'Space Mono',monospace;font-size:.65rem;color:var(--muted);letter-spacing:.5px;display:flex;align-items:center;gap:5px;"><i class="bi bi-calendar-check" style="color:var(--tomato);"></i> 7 Days a Week</span>
+          <span style="font-family:'Space Mono',monospace;font-size:.65rem;color:var(--muted);letter-spacing:.5px;display:flex;align-items:center;gap:5px;"><i class="bi bi-shield-check" style="color:var(--tomato);"></i> FSSAI Certified</span>
+        </div>
+      </div>
+    </div>
+    <!-- RIGHT -->
+    <div class="hero-right">
+      <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=1000&q=80" alt="Garuda Food Courts" class="hero-img"/>
+      <div class="hero-right-overlay"></div>
+      <div class="spin-badge">
+        <span>Open<br/>6:30 AM<br/>to<br/>11:45 PM<br/>★ Daily</span>
+      </div>
+    </div>
+  </div>
+  <!-- Stats bar -->
+  <div class="stats-bar">
+    <div class="container">
+      <div class="d-flex flex-wrap">
+        <div class="stat-item"><span class="stat-n">12K+</span><span class="stat-l">Families/Month</span></div>
+        <div class="stat-item"><span class="stat-n">4.3★</span><span class="stat-l">Google Rating</span></div>
+        <div class="stat-item"><span class="stat-n">8+</span><span class="stat-l">Food Counters</span></div>
+        <div class="stat-item"><span class="stat-n">FSSAI</span><span class="stat-l">Certified</span></div>
+        <div class="stat-item"><span class="stat-n">6.9K</span><span class="stat-l">Reviews</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-bar">
+  <div class="marquee-inner">
+    <div class="marquee-item">Andhra Meals</div>
+    <div class="marquee-item">South Indian Tiffins</div>
+    <div class="marquee-item">Biryani</div>
+    <div class="marquee-item">North Indian</div>
+    <div class="marquee-item">KFC</div>
+    <div class="marquee-item">Chaat &amp; Desserts</div>
+    <div class="marquee-item">Andhra Meals</div>
+    <div class="marquee-item">South Indian Tiffins</div>
+    <div class="marquee-item">Biryani</div>
+    <div class="marquee-item">North Indian</div>
+    <div class="marquee-item">KFC</div>
+    <div class="marquee-item">Chaat &amp; Desserts</div>
+  </div>
+</div>
+
+<!-- WHY GARUDA -->
+<section class="why-section">
+  <div class="container">
+    <div class="row mb-5">
+      <div class="col-lg-5">
+        <span class="sec-tag sr">Why Stop Here</span>
+        <h2 class="sec-h sr">Why <em>12,000 families</em> stop here every month</h2>
+      </div>
+      <div class="col-lg-6 offset-lg-1 d-flex align-items-end">
+        <p class="sr" style="font-family:'Lora',serif;font-style:italic;color:var(--muted);font-size:1rem;line-height:1.75;margin-bottom:0;">
+          You're driving NH 16. The kids are restless. Everyone's hungry. You need a place that's clean, fast, has food everyone will eat, and doesn't make you regret stopping. That's us. Every single day.
+        </p>
+      </div>
+    </div>
+    <div class="row g-3">
+      <div class="col-md-6 col-lg-3 sr d1">
+        <div class="feat-card">
+          <span class="feat-num">01</span>
+          <span class="feat-emoji">🍽️</span>
+          <h4>Food for Everyone</h4>
+          <p>South Indian tiffins, Andhra meals, North Indian curries, biryani, KFC, chaat, desserts — all under one roof.</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3 sr d2">
+        <div class="feat-card red">
+          <span class="feat-num">02</span>
+          <span class="feat-emoji">✨</span>
+          <h4>Spotless. Always.</h4>
+          <p>FSSAI certified kitchen. Washrooms cleaned every 30 minutes. AC dining halls — not just a dhaba.</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3 sr d3">
+        <div class="feat-card">
+          <span class="feat-num">03</span>
+          <span class="feat-emoji">⏱️</span>
+          <h4>Fast. We Promise.</h4>
+          <p>Tiffins in 8 minutes, meals in 15. Eat well, freshen up, and get back on the road without losing time.</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3 sr d1">
+        <div class="feat-card">
+          <span class="feat-num">04</span>
+          <span class="feat-emoji">📍</span>
+          <h4>Right On Your Route</h4>
+          <p>Midpoint between Vijayawada and Rajahmundry on NH 16 at Gundugolanu. No detours, no U-turns.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VISUAL PANELS -->
+<section class="panels-section">
+  <div class="row g-0">
+    <div class="col-lg-4">
+      <div class="v-panel">
+        <div class="bg bg1"></div>
+        <div class="v-grad"></div>
+        <div class="v-body">
+          <span class="v-num">01 / THE ARRIVAL</span>
+          <span class="v-tag">Ample Parking</span>
+          <h3>"You see the signboard. The kids cheer. Parking's easy. You're here."</h3>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-4">
+      <div class="v-panel">
+        <div class="bg bg2"></div>
+        <div class="v-grad"></div>
+        <div class="v-body">
+          <span class="v-num">02 / THE FOOD</span>
+          <span class="v-tag">Cooked Fresh</span>
+          <h3>"Real food. The kind that makes the next 100 km easier."</h3>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-4">
+      <div class="v-panel">
+        <div class="bg bg3"></div>
+        <div class="v-grad"></div>
+        <div class="v-body">
+          <span class="v-num">03 / THE COMFORT</span>
+          <span class="v-tag">AC Interiors</span>
+          <h3>"Cool air. Clean space. A proper break — not just a stop."</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MENU -->
+<section class="menu-section" id="menu">
+  <div class="container">
+    <div class="row mb-5 align-items-end">
+      <div class="col-lg-6">
+        <span class="sec-tag sr">8 Food Counters</span>
+        <h2 class="sec-h sr">Something for <em>everyone</em> at the table</h2>
+        <p class="sr" style="font-family:'Lora',serif;font-style:italic;color:rgba(255,255,255,.45);font-size:.95rem;line-height:1.65;">8 counters. Veg and non-veg. Breakfast to dinner. One stop, zero arguments.</p>
+      </div>
+      <div class="col-lg-5 offset-lg-1 text-lg-end mt-3 mt-lg-0 sr">
+        <a href="#" class="btn-outline-ink" style="color:rgba(255,255,255,.6);border-color:rgba(255,255,255,.2);">
+          Full Menu <i class="bi bi-arrow-right"></i>
+        </a>
+      </div>
+    </div>
+    <div class="menu-grid sr">
+      <div class="m-card"><span class="m-emo">🍛</span><h5>Andhra Meals</h5><p>The full thali — rice, dal, sambar, rasam, curries, pickle, papad. Lunch & dinner daily.</p></div>
+      <div class="m-card"><span class="m-emo">🥞</span><h5>South Indian Tiffins</h5><p>Dosa, idly, vada, pesarattu, pongal. Served from 6:30 AM for early starters.</p></div>
+      <div class="m-card"><span class="m-emo">🍖</span><h5>Biryani Counter</h5><p>Chicken, mutton, veg. The highway classic done right — flavour at km 200.</p></div>
+      <div class="m-card"><span class="m-emo">🫓</span><h5>North Indian</h5><p>Paneer tikka, dal makhani, naan, roti. For when the group wants something different.</p></div>
+      <div class="m-card"><span class="m-emo">🍗</span><h5>KFC</h5><p>Yes, there's a KFC. Right here. The kids already know.</p></div>
+      <div class="m-card"><span class="m-emo">🍨</span><h5>Chaat &amp; Desserts</h5><p>Pani puri, ice cream, milkshakes, sweets. The snack stop within the pit stop.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="reviews-section" id="reviews">
+  <div class="container">
+    <div class="row mb-5 align-items-end">
+      <div class="col-lg-7">
+        <span class="sec-tag sr">Traveller Reviews</span>
+        <h2 class="sec-h sr">Don't take <em>our word</em> for it</h2>
+        <p class="sr" style="font-family:'Space Mono',monospace;font-size:.7rem;color:var(--muted);letter-spacing:.5px;">6,900+ GOOGLE REVIEWS · 4.3 AVG RATING</p>
+      </div>
+      <div class="col-lg-5 text-lg-end mt-3 mt-lg-0 sr">
+        <a href="https://www.google.com/maps/search/Garuda+Food+Courts+Gundugolanu" target="_blank" class="g-cta">
+          <i class="bi bi-google text-danger"></i> All Reviews on Google
+        </a>
+      </div>
+    </div>
+    <div class="row g-4">
+      <div class="col-md-4 sr d1">
+        <div class="r-card">
+          <div class="r-big">"</div>
+          <div class="r-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+          <p class="r-text">"Finally a highway restaurant between Vijayawada and Rajahmundry! Good food options, clean washrooms, and the AC is a blessing after hours on the road."</p>
+          <div class="r-author">Google Review, Vijayawada Traveller</div>
+        </div>
+      </div>
+      <div class="col-md-4 sr d2">
+        <div class="r-card">
+          <div class="r-big">"</div>
+          <div class="r-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+          <p class="r-text">"We stop here every single trip. The kids love the KFC, I love the Andhra meals. Clean, fast, reliable. What more do you need?"</p>
+          <div class="r-author">Google Review, Family Road Trip</div>
+        </div>
+      </div>
+      <div class="col-md-4 sr d3">
+        <div class="r-card">
+          <div class="r-big">"</div>
+          <div class="r-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-half"></i></div>
+          <p class="r-text">"The Andhra thali is genuinely fantastic. Parking easy, service fast, washrooms actually clean — rare for a highway stop!"</p>
+          <div class="r-author">Google Review, Rajahmundry Traveller</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LOCATION -->
+<section class="location-section" id="location">
+  <div class="container">
+    <div class="row mb-5">
+      <div class="col-lg-5">
+        <span class="sec-tag sr">Find Us</span>
+        <h2 class="sec-h sr">You're <em>closer</em> than you think</h2>
+      </div>
+    </div>
+    <div class="row g-5">
+      <div class="col-lg-5 sr">
+        <div class="loc-row">
+          <div class="loc-ico"><i class="bi bi-geo-alt-fill"></i></div>
+          <div><div class="loc-lbl">Address</div><div class="loc-val">NH 16, Gundugolanu, Komirepalle,<br/>Andhra Pradesh 534427</div></div>
+        </div>
+        <div class="loc-row">
+          <div class="loc-ico"><i class="bi bi-telephone-fill"></i></div>
+          <div><div class="loc-lbl">Phone</div><div class="loc-val"><a href="tel:+919030222222" style="color:var(--tomato);text-decoration:none;">+91 90302 22222</a></div></div>
+        </div>
+        <div class="loc-row">
+          <div class="loc-ico"><i class="bi bi-clock-fill"></i></div>
+          <div><div class="loc-lbl">Hours</div><div class="loc-val">6:30 AM – 11:45 PM · All 7 Days</div></div>
+        </div>
+        <div class="loc-row">
+          <div class="loc-ico"><i class="bi bi-signpost-split-fill"></i></div>
+          <div><div class="loc-lbl">Landmark</div><div class="loc-val">Near Eluru, between Vijayawada & Tadepalligudem</div></div>
+        </div>
+        <div class="dist-row">
+          <span class="dpill">Vijayawada ~85km · 1h15m</span>
+          <span class="dpill">Rajahmundry ~95km · 1h30m</span>
+          <span class="dpill">Eluru ~15km · 20min</span>
+        </div>
+        <div class="mt-4">
+          <a href="https://maps.google.com/?q=Garuda+Food+Courts+NH16+Gundugolanu" target="_blank" class="btn-ink">
+            <i class="bi bi-geo-alt-fill"></i> Open in Google Maps
+          </a>
+        </div>
+      </div>
+      <div class="col-lg-7 sr d2">
+        <div class="map-wrap">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3828.5!2d81.4!3d16.85!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a37d6a3b3e3a0f5%3A0x0!2sGaruda+Food+Courts!5e0!3m2!1sen!2sin!4v1"
+            width="100%" height="420" style="border:0;display:block;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta">
+  <div class="container position-relative">
+    <p class="sr" style="font-family:'Space Mono',monospace;font-size:.68rem;letter-spacing:3px;color:rgba(255,255,255,.5);text-transform:uppercase;margin-bottom:1rem;">Open Now · Serving Fresh · NH 16</p>
+    <h2 class="big sr">The Road Is Long.<br/><em>Your Break Should Be Great.</em></h2>
+    <p class="sub sr">Waiting for you at <strong style="color:#fff;font-style:normal;">Gundugolanu.</strong></p>
+    <div class="d-flex justify-content-center gap-3 flex-wrap sr">
+      <a href="tel:+919030222222" class="btn-white"><i class="bi bi-telephone-fill"></i> Call: +91 90302 22222</a>
+      <a href="https://maps.google.com/?q=Garuda+Food+Courts+NH16+Gundugolanu" target="_blank" class="btn-ghost-w"><i class="bi bi-geo-alt-fill"></i> Get Directions</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-lg-4">
+        <div class="f-logo">GARUDA <span>FOOD COURTS</span></div>
+        <div class="f-tag">SRK Recreations Pvt Ltd · NH 16, Gundugolanu</div>
+        <p style="font-family:'Lora',serif;font-style:italic;font-size:.8rem;color:rgba(255,255,255,.25);margin-top:.8rem;line-height:1.65;">"Creating Wow Experience with Fresh, Fast and Tasty Food, serving you with Love and Respect every time."</p>
+        <div class="mt-3 d-flex gap-2">
+          <a href="#" class="soc"><i class="bi bi-facebook"></i></a>
+          <a href="#" class="soc"><i class="bi bi-instagram"></i></a>
+          <a href="#" class="soc"><i class="bi bi-youtube"></i></a>
+          <a href="#" class="soc"><i class="bi bi-whatsapp"></i></a>
+        </div>
+      </div>
+      <div class="col-6 col-lg-2 offset-lg-1">
+        <span class="f-head">Navigate</span>
+        <ul class="f-list">
+          <li><a href="#">Home</a></li>
+          <li><a href="#menu">Menu</a></li>
+          <li><a href="#reviews">Reviews</a></li>
+          <li><a href="#location">Location</a></li>
+          <li><a href="#">Gallery</a></li>
+          <li><a href="#">About</a></li>
+        </ul>
+      </div>
+      <div class="col-6 col-lg-2">
+        <span class="f-head">Counters</span>
+        <ul class="f-list">
+          <li><a href="#">Andhra Meals</a></li>
+          <li><a href="#">South Indian</a></li>
+          <li><a href="#">Biryani</a></li>
+          <li><a href="#">North Indian</a></li>
+          <li><a href="#">KFC</a></li>
+          <li><a href="#">Chaat & Sweets</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-3">
+        <span class="f-head">Contact</span>
+        <ul class="f-list">
+          <li><a href="tel:+919030222222">+91 90302 22222</a></li>
+          <li style="color:rgba(255,255,255,.28);font-size:.82rem;font-family:'Lora',serif;margin-bottom:6px;">6:30 AM – 11:45 PM Daily</li>
+          <li style="color:rgba(255,255,255,.28);font-size:.82rem;font-family:'Lora',serif;line-height:1.55;">NH 16, Gundugolanu, Komirepalle, AP 534427</li>
+        </ul>
+      </div>
+    </div>
+    <div class="f-bottom">© 2025 GARUDA FOOD COURTS · SRK RECREATIONS PVT LTD · NH 16, GUNDUGOLANU, ANDHRA PRADESH · ALL RIGHTS RESERVED</div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  const obs = new IntersectionObserver(e => e.forEach(x => {if(x.isIntersecting) x.target.classList.add('on');}), {threshold:.1});
+  document.querySelectorAll('.sr').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
