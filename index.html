@@ -15,8 +15,8 @@
   --bg:#0C0A08;
   --bg2:#131008;
   --bg3:#1A1408;
-  --amber:#D4821A;
-  --amber-lt:#F0A535;
+  --amber:#FFB400;
+  --amber-lt:#FFB400;
   --amber-glow:rgba(212,130,26,0.18);
   --cream:#F5EDD8;
   --warm:#E8D5B0;
@@ -444,50 +444,126 @@ a:hover ~ .cursor,.cursor.hovering{width:16px;height:16px;}
 }
 
 /* ── CINEMATIC STRIP ── */
-.cinematic{position:relative;overflow:hidden;}
+.cinematic{
+  position:relative;
+  overflow:hidden;
+  padding:3rem 0;
+  background:var(--bg);
+}
 .cin-track{
   display:grid;
-  grid-template-columns:2fr 1fr 1fr;
-  height:600px;
+  grid-template-columns:repeat(3,1fr);
+  gap:1.2rem;
+  height:500px;
+  padding:0 1rem;
 }
-@media(max-width:991px){.cin-track{grid-template-columns:1fr 1fr;height:auto;}}
-@media(max-width:575px){.cin-track{grid-template-columns:1fr;}}
+@media(max-width:991px){
+  .cin-track{
+    grid-template-columns:1fr;
+    height:auto;
+    gap:1rem;
+    padding:0;
+  }
+}
+@media(max-width:575px){
+  .cin-track{
+    grid-template-columns:1fr;
+  }
+}
 .cin-panel{
-  position:relative;overflow:hidden;
-  border-right:1px solid rgba(212,130,26,0.1);
+  position:relative;
+  overflow:hidden;
+  border-radius:16px;
+  border:1px solid rgba(212,130,26,0.15);
+  transition:flex .5s cubic-bezier(.34,.1,.64,.1);
+  cursor:pointer;
+  display:flex;
+  align-items:flex-end;
+  flex:1;
 }
-.cin-panel:last-child{border-right:none;}
+.cin-panel:hover{
+  flex:2.2;
+  z-index:10;
+}
 .cin-bg{
-  position:absolute;inset:0;
-  background-size:cover;background-position:center;
+  position:absolute;
+  inset:0;
+  background-size:cover;
+  background-position:center;
   transition:transform .6s ease;
   filter:brightness(.7) saturate(1.15);
 }
-.cin-panel:hover .cin-bg{transform:scale(1.06);}
-.cin-grad{position:absolute;inset:0;background:linear-gradient(to top,rgba(12,10,8,.92)0%,rgba(12,10,8,0)60%);}
+.cin-panel:hover .cin-bg{
+  transform:scale(1.12);
+}
+.cin-grad{
+  position:absolute;
+  inset:0;
+  background:linear-gradient(to top,rgba(12,10,8,.92)0%,rgba(12,10,8,0)60%);
+  z-index:1;
+}
 .cin-content{
-  position:absolute;bottom:0;left:0;right:0;
-  padding:2.2rem;z-index:2;
+  position:relative;
+  padding:2.2rem;
+  z-index:2;
+  width:100%;
+  display:flex;
+  flex-direction:column;
+  gap:0.8rem;
 }
 .cin-tag{
   display:inline-block;
   background:var(--amber);
   color:var(--bg);
-  font-size:.6rem;font-weight:700;
-  letter-spacing:2px;text-transform:uppercase;
-  padding:.25rem .7rem;border-radius:60px;
-  margin-bottom:.7rem;
+  font-size:.6rem;
+  font-weight:700;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  padding:.25rem .7rem;
+  border-radius:60px;
+  width:fit-content;
+  transition:transform .3s;
+}
+.cin-panel:hover .cin-tag{
+  transform:scale(1.15);
 }
 .cin-content h3{
   font-family:'Cormorant Garamond',serif;
-  font-size:1.6rem;font-weight:400;
-  color:var(--white);font-style:italic;
+  font-size:1.4rem;
+  font-weight:400;
+  color:var(--white);
+  font-style:italic;
   line-height:1.3;
+  transition:font-size .4s;
 }
-.cin-panel:not(:first-child) .cin-content h3{font-size:1.2rem;}
-.cp1{background:linear-gradient(to top,rgba(12,10,8,.9),transparent 55%),url('img/img-1.jpg?w=1100&q=85')center/cover;}
-.cp2{background:linear-gradient(to top,rgba(12,10,8,.9),transparent 50%),url('img/img-2.jpg?w=800&q=85')center/cover;}
-.cp3{background:linear-gradient(to top,rgba(12,10,8,.9),transparent 50%),url('img/img-3.jpg?w=800&q=85')center/cover;}
+.cin-panel:hover .cin-content h3{
+  font-size:1.9rem;
+}
+.cp1{
+  background:linear-gradient(to top,rgba(12,10,8,.9),transparent 55%),url('img/img-1.jpg?w=1100&q=85')center/cover;
+}
+.cp2{
+  background:linear-gradient(to top,rgba(12,10,8,.9),transparent 50%),url('img/img-2.jpg?w=800&q=85')center/cover;
+}
+.cp3{
+  background:linear-gradient(to top,rgba(12,10,8,.9),transparent 50%),url('img/img-3.jpg?w=800&q=85')center/cover;
+}
+
+@media(max-width:767px){
+  .cin-track{
+    grid-template-columns:1fr;
+    height:350px;
+  }
+  .cin-panel:hover{
+    flex:1;
+  }
+  .cin-content h3{
+    font-size:1.3rem;
+  }
+  .cin-panel:hover .cin-content h3{
+    font-size:1.3rem;
+  }
+}
 
 /* ── MENU SECTION ── */
 .menu-section{padding:7rem 0;background:var(--bg2);}
@@ -748,11 +824,11 @@ footer{
   line-height:1;margin-bottom:.3rem;
 }
 .f-sub{font-size:.65rem;font-weight:500;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:1.2rem;}
-.f-promise{font-size:.83rem;font-family:'Cormorant Garamond',serif;font-style:italic;color:rgba(245,237,216,0.25);line-height:1.6;max-width:280px;}
+.f-promise{font-size:.83rem;font-family:'Cormorant Garamond',serif;font-style:italic;color:rgba(245,237,216);line-height:1.6;max-width:280px;}
 .f-head{font-size:.62rem;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--amber);margin-bottom:1.2rem;display:block;}
 .f-links{list-style:none;padding:0;}
 .f-links li{margin-bottom:.55rem;}
-.f-links a{font-size:.85rem;color:rgba(245,237,216,0.3);text-decoration:none;transition:color .2s;font-weight:300;}
+.f-links a{font-size:.85rem;color:rgba(245,237,216);text-decoration:none;transition:color .2s;font-weight:300;}
 .f-links a:hover{color:var(--amber-lt);}
 .f-divider{border:none;border-top:1px solid rgba(212,130,26,0.08);margin:3rem 0 1.5rem;}
 .f-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;}
@@ -819,9 +895,9 @@ footer{
   <!-- LEFT -->
   <div class="hero-left">
     <div class="hero-vstrip">
-      <div class="vstrip-item"><i class="bi bi-clock-fill"></i>6:30 AM – 11:45 PM</div>
-      <div class="vstrip-item"><i class="bi bi-shield-check-fill"></i>FSSAI Certified</div>
-      <div class="vstrip-item"><i class="bi bi-star-fill"></i>4.2 Google Rating</div>
+      <!-- <div class="vstrip-item"><i class="bi bi-clock-fill"></i>6:30 AM – 11:45 PM</div> -->
+      <!-- <div class="vstrip-item"><i class="bi bi-shield-check-fill"></i>FSSAI Certified</div>
+      <div class="vstrip-item"><i class="bi bi-star-fill"></i>4.2 Google Rating</div> -->
     </div>
     <div>
       <div class="hero-overline">NH 16 · Gundugolanu, Near Eluru</div>
@@ -847,7 +923,7 @@ footer{
   </div>
   <!-- RIGHT -->
   <div class="hero-right">
-    <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1200&q=85" alt="Garuda Food Courts" class="hero-main-img"/>
+    <img src="food.jpg?w=1200&q=85" alt="Garuda Food Courts" class="hero-main-img"/>
     <div class="float-card">
       <div class="float-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
       <p>13000+ Travellers love us</p>
@@ -922,6 +998,7 @@ footer{
     </div>
   </div>
 </section>
+
 
 <!-- CINEMATIC STRIP -->
 <section class="cinematic">
@@ -1213,8 +1290,8 @@ footer{
         <span class="f-head">Contact</span>
         <ul class="f-links">
           <li><a href="tel:+919030222222" style="color:var(--amber-lt);">+91 90302 22222</a></li>
-          <li style="color:rgba(245,237,216,0.25);font-size:.83rem;margin-bottom:6px;">6:30 AM – 11:45 PM Daily</li>
-          <li style="color:rgba(245,237,216,0.25);font-size:.82rem;line-height:1.6;">NH 16, Gundugolanu, Komirepalle, AP 534427</li>
+          <li style="color:rgba(245,237,216);font-size:.83rem;margin-bottom:6px;">6:30 AM – 11:45 PM Daily</li>
+          <li style="color:rgba(245,237,216);font-size:.82rem;line-height:1.6;">NH 16, Gundugolanu, Komirepalle, AP 534427</li>
         </ul>
       </div>
     </div>
